@@ -1,0 +1,227 @@
+{
+  "hosts": {
+    "WAN_ROUTER_01": {
+      "name": "WAN_ROUTER_01",
+      "type": "ROUTER",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 45.2,
+        "memory": 62.8,
+        "uptime": 864000,
+        "interfaces_up": 8,
+        "interfaces_total": 10
+      },
+      "tags": ["layer:1", "vendor:Cisco", "location:DataCenter"]
+    },
+    "FW_01_PRIMARY": {
+      "name": "FW_01_PRIMARY",
+      "type": "FIREWALL",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 38.5,
+        "memory": 55.2,
+        "sessions": 12500,
+        "sessions_max": 50000,
+        "ha_status": "active"
+      },
+      "tags": ["layer:2", "vendor:Juniper", "ha:FW_HA_GROUP", "role:primary"]
+    },
+    "FW_01_SECONDARY": {
+      "name": "FW_01_SECONDARY",
+      "type": "FIREWALL",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 12.3,
+        "memory": 42.1,
+        "sessions": 0,
+        "sessions_max": 50000,
+        "ha_status": "standby"
+      },
+      "tags": ["layer:2", "vendor:Juniper", "ha:FW_HA_GROUP", "role:secondary"]
+    },
+    "CORE_SW_01": {
+      "name": "CORE_SW_01",
+      "type": "SWITCH",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 82.4,
+        "memory": 71.5,
+        "ports_up": 24,
+        "ports_total": 48,
+        "throughput_gbps": 8.5
+      },
+      "tags": ["layer:3", "vendor:Cisco", "model:Catalyst9300"]
+    },
+    "L2_SW_01": {
+      "name": "L2_SW_01",
+      "type": "SWITCH",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 35.2,
+        "memory": 48.9,
+        "ports_up": 20,
+        "ports_total": 24,
+        "poe_watts": 180
+      },
+      "tags": ["layer:4", "vendor:Cisco", "location:Floor1"]
+    },
+    "L2_SW_02": {
+      "name": "L2_SW_02",
+      "type": "SWITCH",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 41.8,
+        "memory": 52.3,
+        "ports_up": 18,
+        "ports_total": 24,
+        "poe_watts": 165
+      },
+      "tags": ["layer:4", "vendor:Cisco", "location:Floor2"]
+    },
+    "AP_01": {
+      "name": "AP_01",
+      "type": "ACCESS_POINT",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 25.0,
+        "clients": 15,
+        "channel_util_2g": 45.0,
+        "channel_util_5g": 32.0,
+        "noise_floor": -95
+      },
+      "tags": ["layer:5", "location:MeetingRoomA"]
+    },
+    "AP_02": {
+      "name": "AP_02",
+      "type": "ACCESS_POINT",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 35.0,
+        "clients": 28,
+        "channel_util_2g": 68.0,
+        "channel_util_5g": 55.0,
+        "noise_floor": -92
+      },
+      "tags": ["layer:5", "location:OfficeNorth"]
+    },
+    "AP_03": {
+      "name": "AP_03",
+      "type": "ACCESS_POINT",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 30.0,
+        "clients": 22,
+        "channel_util_2g": 52.0,
+        "channel_util_5g": 41.0,
+        "noise_floor": -94
+      },
+      "tags": ["layer:5", "location:OfficeSouth"]
+    },
+    "AP_04": {
+      "name": "AP_04",
+      "type": "ACCESS_POINT",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 18.0,
+        "clients": 8,
+        "channel_util_2g": 25.0,
+        "channel_util_5g": 18.0,
+        "noise_floor": -96
+      },
+      "tags": ["layer:5", "location:Cafeteria"]
+    },
+    "web-prod-01": {
+      "name": "web-prod-01",
+      "type": "SERVER",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 92.4,
+        "memory": 78.5,
+        "disk": 65.2,
+        "load_1m": 4.5,
+        "connections": 1250
+      },
+      "tags": ["env:production", "role:web", "tier:frontend"]
+    },
+    "web-prod-02": {
+      "name": "web-prod-02",
+      "type": "SERVER",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 45.8,
+        "memory": 62.1,
+        "disk": 58.9,
+        "load_1m": 2.1,
+        "connections": 890
+      },
+      "tags": ["env:production", "role:web", "tier:frontend"]
+    },
+    "db-prod-01": {
+      "name": "db-prod-01",
+      "type": "SERVER",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 85.2,
+        "memory": 88.9,
+        "disk": 72.1,
+        "load_1m": 3.8,
+        "connections": 450,
+        "queries_per_sec": 2500
+      },
+      "tags": ["env:production", "role:database", "tier:backend"]
+    },
+    "api-prod-01": {
+      "name": "api-prod-01",
+      "type": "SERVER",
+      "status": "enabled",
+      "metrics": {
+        "cpu": 81.5,
+        "memory": 71.2,
+        "disk": 45.8,
+        "load_1m": 3.2,
+        "connections": 2100,
+        "requests_per_sec": 850
+      },
+      "tags": ["env:production", "role:api", "tier:backend"]
+    }
+  },
+  "alerts": [
+    {
+      "id": "alert-001",
+      "host": "web-prod-01",
+      "severity": "high",
+      "message": "CPU使用率が90%を超えています (92.4%)",
+      "timestamp": "2024-12-29T14:23:00"
+    },
+    {
+      "id": "alert-002",
+      "host": "db-prod-01",
+      "severity": "high",
+      "message": "メモリ使用率が85%を超えています (88.9%)",
+      "timestamp": "2024-12-29T14:25:00"
+    },
+    {
+      "id": "alert-003",
+      "host": "CORE_SW_01",
+      "severity": "warning",
+      "message": "CPU使用率が80%を超えています (82.4%)",
+      "timestamp": "2024-12-29T14:30:00"
+    },
+    {
+      "id": "alert-004",
+      "host": "api-prod-01",
+      "severity": "warning",
+      "message": "CPU使用率が80%を超えています (81.5%)",
+      "timestamp": "2024-12-29T14:32:00"
+    },
+    {
+      "id": "alert-005",
+      "host": "AP_02",
+      "severity": "warning",
+      "message": "2.4GHz チャネル使用率が高くなっています (68%)",
+      "timestamp": "2024-12-29T14:35:00"
+    }
+  ],
+  "metrics_history": {},
+  "maintenance": {}
+}
